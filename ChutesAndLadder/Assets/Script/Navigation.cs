@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class NextInstruction : MonoBehaviour {
+public class Navigation : MonoBehaviour {
 
 	public GameObject text1;
 	public GameObject text2;
@@ -10,6 +10,7 @@ public class NextInstruction : MonoBehaviour {
 	public GameObject text5;
 	public GameObject nextButton;
 	public GameObject backButton;
+	public GameObject menuButton;
 
 	private int counter;
 
