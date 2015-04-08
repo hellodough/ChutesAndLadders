@@ -16,11 +16,12 @@ public class Navigation : MonoBehaviour {
 
 	void Start(){
 		counter = 0;
-		text1.SetActive (true);
 	}
 
 	public void back(){
 		switch(counter){
+			case 0:
+				break;
 			case 1:
 				text2.SetActive(false);
 				text1.SetActive(true);
@@ -67,6 +68,6 @@ public class Navigation : MonoBehaviour {
 	}
 
 	public void loadMenu(){
-		Application.LoadLevel (0);
+		Application.LoadLevel(0);
 	}
 }
