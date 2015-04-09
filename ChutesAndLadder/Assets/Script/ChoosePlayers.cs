@@ -9,9 +9,12 @@ public enum Colors{
 public class ChoosePlayers : MonoBehaviour {
 
 	/*screens*/
-	public GameObject screenOne;
-	public GameObject screenTwo;
-	public GameObject Playbtn;
+	public GameObject playerSelect;
+	public GameObject colorSelect;
+
+	public GameObject numPlayersText;
+	
+	public GameObject playButton;
 
 	/*colors*/
 	public int numPlayers = 0;
@@ -30,13 +33,14 @@ public class ChoosePlayers : MonoBehaviour {
 	private int curPlayer = 0;
 
 	public void load(int num){
-		Application.LoadLevel (num);
+		Application.LoadLevel(num);
 	}
 
-	public void playerNum (int num){
+	public void playerNum(int num){
 		numPlayers = num;
-		screenOne.SetActive (false);
-		screenTwo.SetActive (true);
+		numPlayersText.SetActive(false);
+		playerSelect.SetActive(false);
+		colorSelect.SetActive(true);
 	}
 
 	public void colorPick(int col){
@@ -54,29 +58,29 @@ public class ChoosePlayers : MonoBehaviour {
 				p4Color = col;
 				break;
 		}
-		colorDisable (col);
+		colorDisable(col);
 		curPlayer++;
 		if (curPlayer == numPlayers) {
-			screenTwo.SetActive(false);
-			Playbtn.SetActive(true);
+			colorSelect.SetActive(false);
+			playButton.SetActive(true);
 			return;
 		}
-		txt.text = "Player " + (curPlayer + 1) + " pick your color";
+		txt.text = "Player " + (curPlayer + 1) + ", pick your color";
 	}
 
 	private void colorDisable(int col){
 		switch (col) {
 			case 0:
-				red.SetActive(false);
+				red.GetComponent<Button>().interactable = false;
 				break;
 			case 1:
-				green.SetActive(false);
+				green.GetComponent<Button>().interactable = false;
 				break;
 			case 2:
-				blue.SetActive(false);
+				blue.GetComponent<Button>().interactable = false;
 				break;
 			case 3:
-				yellow.SetActive(false);
+				yellow.GetComponent<Button>().interactable = false;
 				break;
 			}
 	}
