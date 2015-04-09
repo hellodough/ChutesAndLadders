@@ -27,6 +27,7 @@ public class Arrow : MonoBehaviour {
 			value = 6;
 
 		print (value);
+		GameObject.FindGameObjectWithTag ("Player").GetComponent<PlayerMovement> ().MoveSpaces (value);
 
 		for(int i=0; i<j; i++)
 			transform.Rotate (rotate);

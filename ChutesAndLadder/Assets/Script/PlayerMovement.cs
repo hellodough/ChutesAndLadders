@@ -11,7 +11,6 @@ public class PlayerMovement : MonoBehaviour {
 	void Start () {
 		max = 9;
 		min = 0;
-		MoveSpaces (12f);
 	}
 	
 	// Update is called once per frame
