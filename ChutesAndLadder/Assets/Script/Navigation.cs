@@ -11,6 +11,7 @@ public class Navigation : MonoBehaviour {
 	public GameObject nextButton;
 	public GameObject backButton;
 	public GameObject menuButton;
+	public GameObject playButton;
 
 	private int counter;
 
@@ -23,6 +24,7 @@ public class Navigation : MonoBehaviour {
 			case 0:
 				break;
 			case 1:
+				backButton.SetActive(false);
 				text2.SetActive(false);
 				text1.SetActive(true);
 				break;
@@ -38,6 +40,7 @@ public class Navigation : MonoBehaviour {
 				text5.SetActive(false);
 				text4.SetActive(true);
 				nextButton.SetActive(true);
+				playButton.SetActive(false);
 				break;
 		}
 		counter--;
@@ -62,12 +65,13 @@ public class Navigation : MonoBehaviour {
 				text4.SetActive(false);
 				text5.SetActive(true);
 				nextButton.SetActive(false);
+				playButton.SetActive(true);
 				break;
 			}
 		counter++;
 	}
 
-	public void loadMenu(){
-		Application.LoadLevel(0);
+	public void loadMenu(int scene){
+		Application.LoadLevel(scene);
 	}
 }
