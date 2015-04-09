@@ -1,12 +1,8 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="../../../EECS494/final_proj/EECS494_final_proj/final_proj_prototype/Assets/Scripts/Scoring.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Arrow.cs">
     <Files>
-      <File FileName="../../../EECS494/final_proj/EECS494_final_proj/final_proj_prototype/Assets/Scripts/ForceProjectile.cs" Line="131" Column="34" />
-      <File FileName="../../../EECS494/final_proj/EECS494_final_proj/final_proj_prototype/Assets/Scripts/ForceAttack.cs" Line="1" Column="1" />
-      <File FileName="../../../EECS494/final_proj/EECS494_final_proj/final_proj_prototype/Assets/Scripts/Ball.cs" Line="141" Column="3" />
-      <File FileName="../../../EECS494/final_proj/EECS494_final_proj/final_proj_prototype/Assets/Scripts/Player.cs" Line="93" Column="1" />
-      <File FileName="../../../EECS494/final_proj/EECS494_final_proj/final_proj_prototype/Assets/Scripts/Scoring.cs" Line="41" Column="23" />
+      <File FileName="Assets\Arrow.cs" Line="29" Column="17" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
