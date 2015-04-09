@@ -43,6 +43,7 @@ public class Navigation : MonoBehaviour {
 	}
 
 	public void next(){
+		print ("next button");
 		switch (counter) {
 			case 0:
 				backButton.SetActive(true);
