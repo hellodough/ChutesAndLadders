@@ -10,7 +10,6 @@ public class PlayerMovement : MonoBehaviour {
 	void Start () {
 		max = 9;
 		min = 0;
-		MoveSpaces (4f);
 	}
 	
 	// Update is called once per frame
@@ -19,55 +18,36 @@ public class PlayerMovement : MonoBehaviour {
 	}
 
 	public void MoveSpaces(float spaces){
-		Vector3 temp = transform.localPosition;
-		print ("temp " + temp);
-		float xSpots = temp.x + spaces;
-		float ySpots = 0;
-
-		//even rows move right
-		//odd rows move left
-		if (temp.y % 2 == 0) {
-			print ("even");
-			if (xSpots > max) {
-				temp.x = max;
-				ySpots++;
-				spaces -= (max - temp.x) ;
-				print ("spaces" + spaces);
+		Vector3 curPos = transform.localPosition;
+		bool right = (curPos.y % 2 == 0);
+		float distX = 0;
+		float nextX = 0;
+		if (right) {
+			print ("even row");
+			distX = max - curPos.x;
+			if(spaces > distX){
+				print ("reached right bound " + distX);
+				nextX = spaces - distX;
+				curPos.x = max - (nextX - 1);
+				curPos.y++;
 			}
 			else{
-				temp.x += xSpots;
-				spaces -= xSpots;
+				curPos.x += spaces;
 			}
 		}
 		else{
-			print ("odd");
-			if (xSpots > max) {
-				temp.x = min;
-				spaces -= (temp.x - min); //fix this
-				ySpots++;
+			distX = curPos.x - min;
+			if(spaces > distX){
+				print ("reached left bound");
+				nextX = spaces - distX;
+				curPos.x = nextX - 1;
+				curPos.y++;
 			}
 			else{
-				temp.x -= xSpots;
-				spaces -= xSpots;
+				curPos.x -= spaces;
 			}
 		}
-		//move up if needed
-		temp.y += ySpots;
-		spaces -= ySpots;
-		print ("spaces left " + spaces);
-//		//finish off x movements
-//		if (ySpots > 0) {
-//			if (temp.y % 2 == 0) {
-//				print ("even spaces " + spaces);
-//				temp.x += spaces;
-//				spaces -= spaces;
-//			}
-//			else{
-//				print ("odd spaces " + spaces);
-//				temp.x -= spaces;
-//				spaces -= spaces;
-//			}
-//		}
-		transform.localPosition = temp;
+		transform.localPosition = curPos;
 	}
+	
 }
