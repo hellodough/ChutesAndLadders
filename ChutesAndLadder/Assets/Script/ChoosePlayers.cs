@@ -69,15 +69,19 @@ public class ChoosePlayers : MonoBehaviour {
 		switch (curPlayer) {
 			case 0:
 				dontDestroy.p1Color = col;
+				dontDestroy.human[0] = true;
 				break;
 			case 1:
 				dontDestroy.p2Color = col;
+				dontDestroy.human[1] = true;
 				break;
 			case 2:
 				dontDestroy.p3Color = col;
+				dontDestroy.human[2] = true;
 				break;
 			case 3:
 				dontDestroy.p4Color = col;
+				dontDestroy.human[3] = true;
 				break;
 		}
 		colorDisable(col);
@@ -124,14 +128,26 @@ public class ChoosePlayers : MonoBehaviour {
 	}
 
 	public void designateComps(int num) {
-		if (num == 1) {
+		numCompText.SetActive(false);
+		oneComp.SetActive(false);
+		twoComp.SetActive(false);
+		threeComp.SetActive(false);
+		playButton.SetActive(true);
+		while (num > 0) {
 			for (int i = 0; i < 4; i++) {
 				if (colors[i] == false) {
-					dontDestroy.c1Color = i;
+					if (dontDestroy.p2Color == -1) {
+						dontDestroy.p2Color = i;
+					} else if (dontDestroy.p3Color == -1) {
+						dontDestroy.p3Color = i;
+					} else if (dontDestroy.p4Color == -1) {
+						dontDestroy.p4Color = i;
+					}
 					colors[i] = true;
-					break;
 				}
 			}
+			dontDestroy.numPlayers++;
+			num--;
 		}
 	}
 

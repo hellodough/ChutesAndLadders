@@ -6,15 +6,12 @@ public class DontDestroy : MonoBehaviour {
 	private static DontDestroy instance;
 	public int numPlayers;
 
-	public int p1Color;
-	public int p2Color;
-	public int p3Color;
-	public int p4Color;
+	public int p1Color = -1;
+	public int p2Color = -1;
+	public int p3Color = -1;
+	public int p4Color = -1;
 
-	public int c1Color;
-	public int c2Color;
-	public int c3Color;
-
+	public bool[] human = new bool[4] {false, false, false, false};
 
 	public static DontDestroy Instance{
 		get{return instance;}
