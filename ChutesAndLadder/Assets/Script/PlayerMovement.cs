@@ -11,10 +11,10 @@ public class PlayerMovement : MonoBehaviour {
 	private float max; 
 	private float min;
 	private int curSpace;
-
+	private Vector3 curPos;
 	public bool move = false;
 	public int spacesToMove = 0;
-	
+
 	// Use this for initialization
 	void Start () {
 		max = 9;
@@ -61,7 +61,7 @@ public class PlayerMovement : MonoBehaviour {
 			return;		
 		}
 		curSpace += spaces;
-		Vector3 curPos = transform.localPosition;
+		curPos = transform.localPosition;
 		bool right = (curPos.y % 2 == 0);
 		float distX = 0;
 		float nextX = 0;
@@ -94,10 +94,14 @@ public class PlayerMovement : MonoBehaviour {
 		curPos = spacesToCoord (curSpace);
 //		//space to coord
 		print ("cur space " + curSpace);
+		
+		cornerAdjust ();
+
 		transform.localPosition = curPos;
 		if(curSpace == 100){
 			print ("winner!");
 		}
+
 		move = false;
 	}
 
@@ -253,5 +257,30 @@ public class PlayerMovement : MonoBehaviour {
 				}
 		}
 
+	void cornerAdjust()
+	{
+		switch(playerNum){
+
+			case 1:
+				curPos.y += 0.25f;
+				curPos.x -= 0.25f;
+				break;
+			case 2:
+				curPos.y += 0.25f;
+				curPos.x += 0.25f;
+				break;
+			case 3:
+				curPos.y -= 0.25f;
+				curPos.x -= 0.25f;
+				break;
+			case 4:
+				curPos.y -= 0.25f;
+				curPos.x += 0.25f;
+				break;
+
+			}
+
+
+		}
 
 }
