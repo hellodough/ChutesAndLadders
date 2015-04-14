@@ -15,6 +15,14 @@ public class PlayerMovement : MonoBehaviour {
 	public bool move = false;
 	public int spacesToMove = 0;
 
+	private bool animate = false;
+
+	private float speed;
+	private float lerpTime = 1f;
+	private float curLerpTime;
+
+	private Vector3 prevPos;
+
 	// Use this for initialization
 	void Start () {
 		max = 9;
@@ -45,6 +53,9 @@ public class PlayerMovement : MonoBehaviour {
 		print (this.renderer.enabled);
 		print ("\n");
 
+		curLerpTime = 0;
+		speed = .5f;
+
 	}
 	
 	// Update is called once per frame
@@ -60,49 +71,64 @@ public class PlayerMovement : MonoBehaviour {
 			print ("over 100");
 			return;		
 		}
-		curSpace += spaces;
-		curPos = transform.localPosition;
-		bool right = (curPos.y % 2 == 0);
-		float distX = 0;
-		float nextX = 0;
-		if (right) {
-			print ("even row");
-			distX = max - curPos.x;
-			if(spaces > distX){
-				print ("reached right bound " + distX);
-				nextX = spaces - distX;
-				curPos.x = max - (nextX - 1);
-				curPos.y++;
+		if(!animate){
+			curLerpTime = 0;
+			prevPos = transform.localPosition;
+			curSpace += spaces;
+			curPos = transform.localPosition;
+			bool right = (curPos.y % 2 == 0);
+			float distX = 0;
+			float nextX = 0;
+			if (right) {
+				print ("even row");
+				distX = max - curPos.x;
+				if(spaces > distX){
+					print ("reached right bound " + distX);
+					nextX = spaces - distX;
+					curPos.x = max - (nextX - 1);
+					curPos.y++;
+				}
+				else{
+					curPos.x += spaces;
+				}
 			}
 			else{
-				curPos.x += spaces;
+				distX = curPos.x - min;
+				if(spaces > distX){
+					print ("reached left bound");
+					nextX = spaces - distX;
+					curPos.x = nextX - 1;
+					curPos.y++;
+				}
+				else{
+					curPos.x -= spaces;
+				}
 			}
-		}
-		else{
-			distX = curPos.x - min;
-			if(spaces > distX){
-				print ("reached left bound");
-				nextX = spaces - distX;
-				curPos.x = nextX - 1;
-				curPos.y++;
-			}
-			else{
-				curPos.x -= spaces;
-			}
-		}
-		curSpace = chutesAndLadders (curSpace);
-		curPos = spacesToCoord (curSpace);
-//		//space to coord
-		print ("cur space " + curSpace);
-		
-		cornerAdjust ();
+			curSpace = chutesAndLadders (curSpace);
+			curPos = spacesToCoord (curSpace);
+	//		//space to coord
+			print ("cur space " + curSpace);
+			
+			cornerAdjust ();
 
-		transform.localPosition = curPos;
-		if(curSpace == 100){
-			print ("winner!");
+//			transform.localPosition = curPos;
+
+			animate = true;
 		}
 
-		move = false;
+		if (animate) {
+			curLerpTime += Time.deltaTime * speed;
+			if(curLerpTime > lerpTime){
+				curLerpTime = lerpTime;
+				move = false;
+				animate = false;
+				if(curSpace == 100){
+					print ("winner!");
+				}
+			}
+			float perc = curLerpTime / lerpTime;
+			transform.localPosition = Vector3.Lerp(prevPos, curPos, perc);
+		}
 	}
 
 	private int chutesAndLadders(int curSpace){
