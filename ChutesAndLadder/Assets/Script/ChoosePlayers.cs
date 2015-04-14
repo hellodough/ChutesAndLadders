@@ -16,12 +16,12 @@ public class ChoosePlayers : MonoBehaviour {
 	
 	public GameObject playButton;
 
-	/*colors*/
-	public int numPlayers = 0;
-	public int p1Color;
-	public int p2Color;
-	public int p3Color;
-	public int p4Color;
+//	/*colors*/
+//	public int numPlayers = 0;
+//	public int p1Color;
+//	public int p2Color;
+//	public int p3Color;
+//	public int p4Color;
 
 	public GameObject red;
 	public GameObject green;
@@ -32,14 +32,19 @@ public class ChoosePlayers : MonoBehaviour {
 
 	private int curPlayer = 0;
 
-	private static ChoosePlayers instance;
+	private DontDestroy dontDestroy;
+
+	void Start(){
+		dontDestroy = GameObject.FindGameObjectWithTag ("dontdestroy").GetComponent<DontDestroy> ();
+	}
 
 	public void load(int num){
 		Application.LoadLevel(num);
 	}
 
 	public void playerNum(int num){
-		numPlayers = num;
+		dontDestroy.numPlayers = num;
+
 		numPlayersText.SetActive(false);
 		playerSelect.SetActive(false);
 		colorSelect.SetActive(true);
@@ -48,21 +53,21 @@ public class ChoosePlayers : MonoBehaviour {
 	public void colorPick(int col){
 		switch (curPlayer) {
 			case 0:
-				p1Color = col;
+				dontDestroy.p1Color = col;
 				break;
 			case 1:
-				p2Color = col;
+				dontDestroy.p2Color = col;
 				break;
 			case 2:
-				p3Color = col;
+				dontDestroy.p3Color = col;
 				break;
 			case 3:
-				p4Color = col;
+				dontDestroy.p4Color = col;
 				break;
 		}
 		colorDisable(col);
 		curPlayer++;
-		if (curPlayer == numPlayers) {
+		if (curPlayer == dontDestroy.numPlayers) {
 			colorSelect.SetActive(false);
 			playButton.SetActive(true);
 			return;
@@ -87,15 +92,6 @@ public class ChoosePlayers : MonoBehaviour {
 			}
 	}
 
-void Awake() {
-	DontDestroyOnLoad(this);
-	if (instance == null)
-		instance = this;
-	else if (instance != this) {
-		Destroy(gameObject);
-		return;
-	}
-	instance.tag = "dontdestroy";
-	}
+
 
 }

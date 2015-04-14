@@ -4,7 +4,7 @@ using System.Collections;
 public class PlayerMovement : MonoBehaviour {
 
 	public GameObject dontDestroy;
-	private ChoosePlayers playerChoices;
+	private DontDestroy playerChoices;
 	private Color playerColor;
 
 	private int playerNum;
@@ -18,8 +18,8 @@ public class PlayerMovement : MonoBehaviour {
 		min = 0;
 		curSpace = 0;
 		dontDestroy = GameObject.FindGameObjectWithTag ("dontdestroy");
-		playerChoices = dontDestroy.GetComponent<ChoosePlayers> ();
-		playerChoices.playButton.SetActive(false);
+		playerChoices = dontDestroy.GetComponent<DontDestroy> ();
+//		playerChoices.playButton.SetActive(false);
 
 	//	print (playerChoices.p1Color);
 
