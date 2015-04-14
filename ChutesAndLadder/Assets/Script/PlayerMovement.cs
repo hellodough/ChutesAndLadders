@@ -3,7 +3,11 @@ using System.Collections;
 
 public class PlayerMovement : MonoBehaviour {
 
-	
+	public GameObject dontDestroy;
+	private ChoosePlayers playerChoices;
+	private Color playerColor;
+
+	private int playerNum;
 	private float max; 
 	private float min;
 	private int curSpace;
@@ -13,6 +17,31 @@ public class PlayerMovement : MonoBehaviour {
 		max = 9;
 		min = 0;
 		curSpace = 0;
+		dontDestroy = GameObject.FindGameObjectWithTag ("dontdestroy");
+		playerChoices = dontDestroy.GetComponent<ChoosePlayers> ();
+		playerChoices.playButton.SetActive(false);
+
+	//	print (playerChoices.p1Color);
+
+		if (this.tag == "Player1")
+			playerNum = 1;
+		else if (this.tag == "Player2")
+			playerNum = 2;
+		else if (this.tag == "Player3")
+			playerNum = 3;
+		else
+			playerNum = 4;
+
+		setColor ();
+
+		if (playerNum > playerChoices.numPlayers)
+			this.renderer.enabled = false;
+
+		this.renderer.material.color = playerColor;
+		print (playerColor);
+		print (this.renderer.enabled);
+		print ("\n");
+
 	}
 	
 	// Update is called once per frame
@@ -130,4 +159,92 @@ public class PlayerMovement : MonoBehaviour {
 		print ("y " + y);
 		return new Vector3 (x, y, 0);
 	}
+
+	void setColor()
+	{
+				switch (playerNum) {
+				case 1:	
+						switch (playerChoices.p1Color) {
+						case 0:
+								playerColor = Color.red;
+								break;
+				
+						case 1:	
+								playerColor = Color.green;
+								break;
+				
+						case 2:
+								playerColor = Color.blue;
+								break;
+				
+						default:
+								playerColor = Color.yellow;
+								break;
+						}
+						break;
+			
+				case 2:
+						switch (playerChoices.p2Color) {
+						case 0:
+								playerColor = Color.red;
+								break;
+				
+						case 1:	
+								playerColor = Color.green;
+								break;
+				
+						case 2:
+								playerColor = Color.blue;
+								break;
+				
+						default:
+								playerColor = Color.yellow;
+								break;
+						}
+						break;
+			
+				case 3:
+						switch (playerChoices.p3Color) {
+						case 0:
+								playerColor = Color.red;
+								break;
+				
+						case 1:	
+								playerColor = Color.green;
+								break;
+				
+						case 2:
+								playerColor = Color.blue;
+								break;
+				
+						default:
+								playerColor = Color.yellow;
+								break;
+						}
+						break;
+			
+				default:
+						switch (playerChoices.p4Color) {
+						case 0:
+								playerColor = Color.red;
+								break;
+				
+						case 1:	
+								playerColor = Color.green;
+								break;
+				
+						case 2:
+								playerColor = Color.blue;
+								break;
+				
+						default:
+								playerColor = Color.yellow;
+								break;
+						}
+						break;
+			
+				}
+		}
+
+
 }
