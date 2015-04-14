@@ -32,6 +32,8 @@ public class ChoosePlayers : MonoBehaviour {
 
 	private int curPlayer = 0;
 
+	private static ChoosePlayers instance;
+
 	public void load(int num){
 		Application.LoadLevel(num);
 	}
@@ -84,4 +86,16 @@ public class ChoosePlayers : MonoBehaviour {
 				break;
 			}
 	}
+
+void Awake() {
+	DontDestroyOnLoad(this);
+	if (instance == null)
+		instance = this;
+	else if (instance != this) {
+		Destroy(gameObject);
+		return;
+	}
+	instance.tag = "dontdestroy";
+	}
+
 }
