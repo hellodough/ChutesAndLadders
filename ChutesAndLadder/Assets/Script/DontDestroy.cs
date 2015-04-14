@@ -11,6 +11,10 @@ public class DontDestroy : MonoBehaviour {
 	public int p3Color;
 	public int p4Color;
 
+	public int c1Color;
+	public int c2Color;
+	public int c3Color;
+
 
 	public static DontDestroy Instance{
 		get{return instance;}
