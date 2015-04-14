@@ -49,6 +49,7 @@
      <Compile Include="Assets\Script\Arrow.cs" />
      <Compile Include="Assets\Script\ChoosePlayers.cs" />
      <Compile Include="Assets\Script\DontDestroy.cs" />
+     <Compile Include="Assets\Script\Driver.cs" />
      <Compile Include="Assets\Script\LoadScene.cs" />
      <Compile Include="Assets\Script\Navigation.cs" />
      <Compile Include="Assets\Script\PlayerMovement.cs" />

@@ -4,10 +4,14 @@ using System.Collections;
 public class Arrow : MonoBehaviour {
 
 	public int value;
+	public Driver driver;
+	public DontDestroy dontDestroy;
 
 	// Use this for initialization
 	void Start () {
 		value = 1;
+		driver = GameObject.FindGameObjectWithTag ("driver").GetComponent<Driver> ();
+		dontDestroy = GameObject.FindGameObjectWithTag ("dontdestroy").GetComponent<DontDestroy> ();
 	}
 	
 	// Update is called once per frame
@@ -27,7 +31,28 @@ public class Arrow : MonoBehaviour {
 			value = 6;
 
 		print (value);
-		GameObject.FindGameObjectWithTag ("Player").GetComponent<PlayerMovement> ().MoveSpaces (value);
+
+		switch (driver.playerTurn) {
+			case 1:
+				GameObject.FindGameObjectWithTag ("Player1").GetComponent<PlayerMovement> ().move = true;
+				GameObject.FindGameObjectWithTag ("Player1").GetComponent<PlayerMovement> ().spacesToMove = value;
+				break;
+			case 2:
+				GameObject.FindGameObjectWithTag ("Player2").GetComponent<PlayerMovement> ().move = true;
+				GameObject.FindGameObjectWithTag ("Player2").GetComponent<PlayerMovement> ().spacesToMove = value;
+				break;
+			case 3:
+				GameObject.FindGameObjectWithTag ("Player3").GetComponent<PlayerMovement> ().move = true;
+				GameObject.FindGameObjectWithTag ("Player3").GetComponent<PlayerMovement> ().spacesToMove = value;
+				break;
+			case 4: 
+				GameObject.FindGameObjectWithTag ("Player4").GetComponent<PlayerMovement> ().move = true;
+				GameObject.FindGameObjectWithTag ("Player4").GetComponent<PlayerMovement> ().spacesToMove = value;
+				break;
+//			default:
+//				break;
+		}
+		driver.playerTurn = (driver.playerTurn % dontDestroy.numPlayers) + 1;
 
 		for(int i=0; i<j; i++)
 			transform.Rotate (rotate);
