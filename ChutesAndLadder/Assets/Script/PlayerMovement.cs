@@ -11,6 +11,9 @@ public class PlayerMovement : MonoBehaviour {
 	private float max; 
 	private float min;
 	private int curSpace;
+
+	public bool move = false;
+	public int spacesToMove = 0;
 	
 	// Use this for initialization
 	void Start () {
@@ -46,7 +49,10 @@ public class PlayerMovement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+		if (move) {
+			MoveSpaces(spacesToMove);	
+		}
+
 	}
 	
 	public void MoveSpaces(int spaces){
@@ -92,6 +98,7 @@ public class PlayerMovement : MonoBehaviour {
 		if(curSpace == 100){
 			print ("winner!");
 		}
+		move = false;
 	}
 
 	private int chutesAndLadders(int curSpace){
