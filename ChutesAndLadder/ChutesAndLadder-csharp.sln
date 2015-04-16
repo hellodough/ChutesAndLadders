@@ -17,7 +17,44 @@ Global
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
+<<<<<<< HEAD
 																GlobalSection(MonoDevelopProperties) = preSolution
+=======
+<<<<<<< HEAD
+																														GlobalSection(MonoDevelopProperties) = preSolution
+=======
+																												GlobalSection(MonoDevelopProperties) = preSolution
+>>>>>>> 229c0d5a97513253d0d74266dad3cb27157a1839
+=======
+																						GlobalSection(MonoDevelopProperties) = preSolution
+=======
+																							GlobalSection(MonoDevelopProperties) = preSolution
+>>>>>>> 6252e854fb27a3a29a80b4ab9bdfd52309521952
+>>>>>>> e12e6f26aaa3ba87639d879c5f51348736504840
+=======
+																	GlobalSection(MonoDevelopProperties) = preSolution
+=======
+<<<<<<< HEAD
+																			GlobalSection(MonoDevelopProperties) = preSolution
+=======
+<<<<<<< HEAD
+																				GlobalSection(MonoDevelopProperties) = preSolution
+=======
+																					GlobalSection(MonoDevelopProperties) = preSolution
+>>>>>>> a1790b50ffeeb408189c5464eb291f8ce8131cdd
+>>>>>>> 07bcf881a30f48eaf5f13a35f7f06a94df6f8aab
+=======
+															GlobalSection(MonoDevelopProperties) = preSolution
+>>>>>>> 1fb9b28cd95f18fd39fc7babfe764cc9d9fcffdf
+=======
+															GlobalSection(MonoDevelopProperties) = preSolution
+>>>>>>> 97314260640c3eec5b20a7400e0d97d266f7652a
+>>>>>>> 18b1210453327b9fa725bbe613fc767c37d4599c
+<<<<<<< HEAD
+>>>>>>> 043b10391e3baf6ad16533418db4596b29e29fda
+=======
+>>>>>>> 07bcf881a30f48eaf5f13a35f7f06a94df6f8aab
+>>>>>>> 40a513a846210358934a47b9cf6a0d39dcd92868
 		StartupItem = Assembly-CSharp.csproj
 		Policies = $0
 		$0.TextStylePolicy = $1

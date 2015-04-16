@@ -46,9 +46,15 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Script\Arrow.cs" />
      <Compile Include="Assets\Script\ChoosePlayers.cs" />
+     <Compile Include="Assets\Script\DontDestroy.cs" />
+     <Compile Include="Assets\Script\Driver.cs" />
      <Compile Include="Assets\Script\LoadScene.cs" />
      <Compile Include="Assets\Script\Navigation.cs" />
+     <Compile Include="Assets\Script\Online.cs" />
+     <Compile Include="Assets\Script\PlayerMovement.cs" />
+     <Compile Include="Assets\Script\Spinner.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>/Volumes/Seagate Backup Plus Drive/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/4.6.2/UnityEngine.UI.dll</HintPath>
  </Reference>
