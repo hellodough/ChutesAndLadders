@@ -4,6 +4,7 @@ using System.Collections;
 public class Driver : MonoBehaviour {
 
 	public int playerTurn;	
+	public bool animating = false;
 
 	// Use this for initialization
 	void Start () {
