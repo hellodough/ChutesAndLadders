@@ -26,6 +26,8 @@ public class PlayerMovement : MonoBehaviour {
 
 	private Vector3 prevPos;
 
+	public Driver driver;
+
 	// Use this for initialization
 	void Start () {
 		positions = new List<Vector3> ();
@@ -35,6 +37,7 @@ public class PlayerMovement : MonoBehaviour {
 		indexPos = 0;
 		dontDestroy = GameObject.FindGameObjectWithTag ("dontdestroy");
 		playerChoices = dontDestroy.GetComponent<DontDestroy> ();
+		driver = GameObject.FindGameObjectWithTag("driver").GetComponent<Driver>();
 //		playerChoices.playButton.SetActive(false);
 
 	//	print (playerChoices.p1Color);
@@ -126,6 +129,7 @@ public class PlayerMovement : MonoBehaviour {
 			//transform.localPosition = curPos;
 			//move = false;
 			animate = true;
+
 			GameObject.FindGameObjectWithTag("driver").GetComponent<Driver>().animating = true;
 		}
 		if (animate) {
@@ -156,8 +160,10 @@ public class PlayerMovement : MonoBehaviour {
 				positions = new List<Vector3>();
 				indexPos = 0;
 				curLerpTime = 0;
+				driver.updateTurn();
 			}
 		}
+
 	}
 
 	private int chutesAndLadders(int curSpace){

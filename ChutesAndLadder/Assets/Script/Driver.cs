@@ -9,11 +9,16 @@ public class Driver : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		playerTurn = 1;
-	
+	updateTurn();
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	public void Update () {
+		//if (!animating)
+		//	GameObject.FindGameObjectWithTag ("turntext").GetComponent<GUIText> ().text = "Player " + playerTurn + "'s turn!";
+	}
+
+	public void updateTurn(){
 		GameObject.FindGameObjectWithTag ("turntext").GetComponent<GUIText> ().text = "Player " + playerTurn + "'s turn!";
 	}
 }

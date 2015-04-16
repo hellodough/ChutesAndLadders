@@ -113,6 +113,7 @@ public class ChoosePlayers : MonoBehaviour {
 		} 
 		// if only one computer needed, go straight to game
 		if (possibleComps == 1) {
+			designateComps(possibleComps);
 			playButton.SetActive(true);
 		} else {
 			numCompText.SetActive(true);
