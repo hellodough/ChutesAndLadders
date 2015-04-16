@@ -75,7 +75,7 @@ public class PlayerMovement : MonoBehaviour {
 	}
 	
 	public void MoveSpaces(int spaces){
-		if (curSpace + spaces > 100) {
+		if (!animate && (curSpace + spaces > 100)) {
 			print ("over 100");
 			return;		
 		}
