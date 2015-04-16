@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class PlayerMovement : MonoBehaviour {
 
@@ -16,18 +17,22 @@ public class PlayerMovement : MonoBehaviour {
 	public int spacesToMove = 0;
 
 	private bool animate = false;
+	private List<Vector3> positions;
+	private int indexPos;
 
 	private float speed;
-	private float lerpTime = 1f;
+	private float lerpTime = .75f;
 	private float curLerpTime;
 
 	private Vector3 prevPos;
 
 	// Use this for initialization
 	void Start () {
+		positions = new List<Vector3> ();
 		max = 9;
 		min = 0;
 		curSpace = 0;
+		indexPos = 0;
 		dontDestroy = GameObject.FindGameObjectWithTag ("dontdestroy");
 		playerChoices = dontDestroy.GetComponent<DontDestroy> ();
 //		playerChoices.playButton.SetActive(false);
@@ -74,9 +79,11 @@ public class PlayerMovement : MonoBehaviour {
 		if(!animate){
 			curLerpTime = 0;
 			prevPos = transform.localPosition;
+			positions.Add (transform.localPosition);
 			curSpace += spaces;
 			curPos = transform.localPosition;
-			bool right = (curPos.y % 2 == 0);
+			bool right = (Mathf.Round(curPos.y) % 2 == 0);
+
 			float distX = 0;
 			float nextX = 0;
 			if (right) {
@@ -87,6 +94,7 @@ public class PlayerMovement : MonoBehaviour {
 					nextX = spaces - distX;
 					curPos.x = max - (nextX - 1);
 					curPos.y++;
+					//positions.Add (curPos);
 				}
 				else{
 					curPos.x += spaces;
@@ -99,39 +107,61 @@ public class PlayerMovement : MonoBehaviour {
 					nextX = spaces - distX;
 					curPos.x = nextX - 1;
 					curPos.y++;
+					//positions.Add (curPos);
 				}
 				else{
 					curPos.x -= spaces;
+					//positions.Add (curPos);
 				}
 			}
 			curSpace = chutesAndLadders (curSpace);
 			curPos = spacesToCoord (curSpace);
-	//		//space to coord
-			print ("cur space " + curSpace);
 			
 			cornerAdjust ();
 
-//			transform.localPosition = curPos;
+			positions.Add(curPos);
+	//		//space to coord
+			print ("cur space " + curSpace);
 
+			//transform.localPosition = curPos;
+			//move = false;
 			animate = true;
+			GameObject.FindGameObjectWithTag("driver").GetComponent<Driver>().animating = true;
 		}
-
 		if (animate) {
+			print ("animate");
 			curLerpTime += Time.deltaTime * speed;
 			if(curLerpTime > lerpTime){
+				print ("move finished");
 				curLerpTime = lerpTime;
-				move = false;
-				animate = false;
+				indexPos++;
+				curLerpTime = 0;
+//				animate = false;
 				if(curSpace == 100){
 					print ("winner!");
 				}
 			}
+
 			float perc = curLerpTime / lerpTime;
-			transform.localPosition = Vector3.Lerp(prevPos, curPos, perc);
+
+			if(indexPos < positions.Count - 1){
+				transform.localPosition = Vector3.Lerp(positions[indexPos], positions[indexPos + 1], perc);
+			}
+
+			if(indexPos == positions.Count - 1){
+				print ("done moving");
+				move = false;
+				animate = false;
+				GameObject.FindGameObjectWithTag("driver").GetComponent<Driver>().animating = false;
+				positions = new List<Vector3>();
+				indexPos = 0;
+				curLerpTime = 0;
+			}
 		}
 	}
 
 	private int chutesAndLadders(int curSpace){
+		positions.Add(curPos);
 		switch (curSpace) {
 			case 1:
 				return 38;
