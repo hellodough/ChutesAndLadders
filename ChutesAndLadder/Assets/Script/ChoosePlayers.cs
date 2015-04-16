@@ -45,7 +45,7 @@ public class ChoosePlayers : MonoBehaviour {
 	// index 1: green
 	// index 2: blue
 	// index 3: yellow
-	private bool[] colors = new bool[4] {false, false, false, false};
+	public bool[] colors = new bool[4] {false, false, false, false};
 
 	private DontDestroy dontDestroy;
 
@@ -68,22 +68,22 @@ public class ChoosePlayers : MonoBehaviour {
 	public void colorPick(int col){
 		switch (curPlayer) {
 			case 0:
-				colors[0] = true;
+				colors[col] = true;
 				dontDestroy.p1Color = col;
 				dontDestroy.human[0] = true;
 				break;
 			case 1:
-				colors[1] = true;
+				colors[col] = true;
 				dontDestroy.p2Color = col;
 				dontDestroy.human[1] = true;
 				break;
 			case 2:
-				colors[2] = true;
+				colors[col] = true;
 				dontDestroy.p3Color = col;
 				dontDestroy.human[2] = true;
 				break;
 			case 3:
-				colors[3] = true;
+				colors[col] = true;
 				dontDestroy.p4Color = col;
 				dontDestroy.human[3] = true;
 				break;
@@ -173,19 +173,19 @@ public class ChoosePlayers : MonoBehaviour {
 		switch (col) {
 			case 0:
 				red.GetComponent<Button>().interactable = false;
-				colors[0] = true;
+				//colors[0] = true;
 				break;
 			case 1:
 				green.GetComponent<Button>().interactable = false;
-				colors[1] = true;
+				//colors[1] = true;
 				break;
 			case 2:
 				blue.GetComponent<Button>().interactable = false;
-				colors[2] = true;
+				//colors[2] = true;
 				break;
 			case 3:
 				yellow.GetComponent<Button>().interactable = false;
-				colors[3] = true;
+				//colors[3] = true;
 				break;
 			}
 	}
