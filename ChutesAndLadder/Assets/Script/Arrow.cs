@@ -7,6 +7,9 @@ public class Arrow : MonoBehaviour {
 	public Driver driver;
 	public DontDestroy dontDestroy;
 
+	private bool set = false;
+	private float usage;
+
 	// Use this for initialization
 	void Start () {
 		value = 1;
@@ -17,7 +20,14 @@ public class Arrow : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (dontDestroy.human [driver.playerTurn-1] == false) {
-			OnMouseDown();		
+			if(!set){
+				usage = Time.time + 2f;
+				set = true;
+			}
+			if(Time.time > usage){
+				OnMouseDown();		
+				set = false;
+			}
 		}
 	}
 
