@@ -16,7 +16,9 @@ public class Arrow : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+		if (dontDestroy.human [driver.playerTurn-1] == false) {
+			OnMouseDown();		
+		}
 	}
 
 	void OnMouseDown(){
