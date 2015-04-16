@@ -145,6 +145,7 @@ public class ChoosePlayers : MonoBehaviour {
 						dontDestroy.p4Color = i;
 					}
 					colors[i] = true;
+					break;
 				}
 			}
 			dontDestroy.numPlayers++;
