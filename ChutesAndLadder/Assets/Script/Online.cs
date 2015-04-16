@@ -9,9 +9,13 @@ public class Online : MonoBehaviour {
 	public GameObject blue;
 	public GameObject yellow;
 
+	public bool[] colors = new bool[4] {false, false, false, false};
+
+	private DontDestroy dontDestroy;
+
 	// Use this for initialization
 	void Start () {
-	
+		dontDestroy = GameObject.FindGameObjectWithTag ("dontdestroy").GetComponent<DontDestroy> ();
 	}
 	
 	// Update is called once per frame
@@ -50,5 +54,38 @@ public class Online : MonoBehaviour {
 				GameObject.FindGameObjectWithTag("cube0").renderer.material.color = new Color(255/255.0F, 228/255.0F, 34/255.0F);
 				break;
 		}
+	}
+
+	public void ColorPick(int col){
+		colors[col] = true;
+		dontDestroy.p1Color = col;
+		dontDestroy.human[0] = true;
+		for (int i = 0; i < 4; i++) {
+			if(i != col){
+				colors[i] = false;
+			}
+		}
+	}
+
+	public void designateComps(int num) {
+		while (num > 0) {
+			for (int i = 0; i < 4; i++) {
+				if (colors[i] == false) {
+					if (dontDestroy.p2Color == -1) {
+						dontDestroy.p2Color = i;
+					} else if (dontDestroy.p3Color == -1) {
+						dontDestroy.p3Color = i;
+					} else if (dontDestroy.p4Color == -1) {
+						dontDestroy.p4Color = i;
+					}
+					colors[i] = true;
+					break;
+				}
+			}
+//			dontDestroy.numPlayers++;
+			num--;
+		}
+		dontDestroy.numPlayers = 4;
+		Application.LoadLevel ("Board");
 	}
 }
