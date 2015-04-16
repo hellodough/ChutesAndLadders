@@ -45,7 +45,7 @@ public class ChoosePlayers : MonoBehaviour {
 	// index 1: green
 	// index 2: blue
 	// index 3: yellow
-	private bool[] colors = new bool[4] {false, false, false, false};
+	public bool[] colors = new bool[4] {false, false, false, false};
 
 	private DontDestroy dontDestroy;
 
@@ -182,6 +182,7 @@ public class ChoosePlayers : MonoBehaviour {
 				break;
 			case 3:
 				yellow.GetComponent<Button>().interactable = false;
+
 				break;
 			}
 	}

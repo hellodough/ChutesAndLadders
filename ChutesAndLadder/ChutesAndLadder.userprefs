@@ -2,7 +2,11 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Script/ChoosePlayers.cs">
     <Files>
+<<<<<<< HEAD
       <File FileName="Assets/Script/ChoosePlayers.cs" Line="83" Column="18" />
+=======
+      <File FileName="Assets/Script/ChoosePlayers.cs" Line="86" Column="16" />
+>>>>>>> c274570d8aedf4945177793c616a048e4cda40f0
       <File FileName="Assets/Script/PlayerMovement.cs" Line="7" Column="27" />
       <File FileName="Assets/Script/Arrow.cs" Line="1" Column="1" />
       <File FileName="Assets/Script/DontDestroy.cs" Line="1" Column="1" />
