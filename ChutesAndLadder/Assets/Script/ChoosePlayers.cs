@@ -68,18 +68,22 @@ public class ChoosePlayers : MonoBehaviour {
 	public void colorPick(int col){
 		switch (curPlayer) {
 			case 0:
+				colors[0] = true;
 				dontDestroy.p1Color = col;
 				dontDestroy.human[0] = true;
 				break;
 			case 1:
+				colors[1] = true;
 				dontDestroy.p2Color = col;
 				dontDestroy.human[1] = true;
 				break;
 			case 2:
+				colors[2] = true;
 				dontDestroy.p3Color = col;
 				dontDestroy.human[2] = true;
 				break;
 			case 3:
+				colors[3] = true;
 				dontDestroy.p4Color = col;
 				dontDestroy.human[3] = true;
 				break;
@@ -113,7 +117,15 @@ public class ChoosePlayers : MonoBehaviour {
 		} 
 		// if only one computer needed, go straight to game
 		if (possibleComps == 1) {
-			designateComps(possibleComps);
+//			designateComps(possibleComps);
+			for (int i = 0; i < 4; i++) {
+				if (colors[i] == false) {
+					dontDestroy.p4Color = i;
+					colors[i] = true;
+					break;
+				}
+			}
+			dontDestroy.numPlayers++;
 			playButton.SetActive(true);
 		} else {
 			numCompText.SetActive(true);
@@ -137,14 +149,19 @@ public class ChoosePlayers : MonoBehaviour {
 		while (num > 0) {
 			for (int i = 0; i < 4; i++) {
 				if (colors[i] == false) {
+					print ("color is " + i);
 					if (dontDestroy.p2Color == -1) {
+						print ("1");
 						dontDestroy.p2Color = i;
 					} else if (dontDestroy.p3Color == -1) {
+						print ("2");
 						dontDestroy.p3Color = i;
 					} else if (dontDestroy.p4Color == -1) {
+						print ("3");
 						dontDestroy.p4Color = i;
 					}
 					colors[i] = true;
+					break;
 				}
 			}
 			dontDestroy.numPlayers++;
