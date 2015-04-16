@@ -14,6 +14,6 @@ public class Driver : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+		GameObject.FindGameObjectWithTag ("turntext").GetComponent<GUIText> ().text = "Player " + playerTurn + "'s turn!";
 	}
 }
