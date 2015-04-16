@@ -52,6 +52,7 @@
      <Compile Include="Assets\Script\Driver.cs" />
      <Compile Include="Assets\Script\LoadScene.cs" />
      <Compile Include="Assets\Script\Navigation.cs" />
+     <Compile Include="Assets\Script\Online.cs" />
      <Compile Include="Assets\Script\PlayerMovement.cs" />
      <Compile Include="Assets\Script\Spinner.cs" />
  <Reference Include="UnityEngine.UI">
