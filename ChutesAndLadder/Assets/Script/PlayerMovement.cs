@@ -143,6 +143,8 @@ public class PlayerMovement : MonoBehaviour {
 //				animate = false;
 				if(curSpace == 100){
 					print ("winner!");
+					playerChoices.winner = playerNum;
+					Application.LoadLevel("Winning");
 				}
 			}
 

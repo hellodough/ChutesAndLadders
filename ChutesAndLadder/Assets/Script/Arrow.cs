@@ -10,6 +10,17 @@ public class Arrow : MonoBehaviour {
 	private bool set = false;
 	private float usage;
 
+	private int jVal;
+
+	private bool animate = false;
+	private Quaternion first;
+	private float lerpTime = .75f;
+	private float curLerpTime;
+	private float speed = .5f;
+
+	private bool setTime = false;
+	private float usageTime;
+
 	// Use this for initialization
 	void Start () {
 		value = 1;
@@ -29,14 +40,19 @@ public class Arrow : MonoBehaviour {
 				set = false;
 			}
 		}
+
+		if (animate) {
+			spin();		
+		}
 	}
 
 	void OnMouseDown(){
 		if(!driver.animating){
+			first = transform.rotation;
 			Vector3 rotate = Quaternion.Euler (0, 0, 0) * Vector3.forward;
 
 			int rand = Random.Range (1, 6);
-			int j = 360-(60 * rand);
+			jVal = 360-(60 * rand);
 
 			value = ((value + rand) % 6);
 			if (value == 0)
@@ -65,10 +81,42 @@ public class Arrow : MonoBehaviour {
 	//				break;
 			}
 			driver.playerTurn = (driver.playerTurn % dontDestroy.numPlayers) + 1;
+//			setTime = false;
+//			int i = 0;
+//			while(i<jVal){
+//				if(!setTime){
+//					print ("set time");
+//					setTime = true;
+//					transform.Rotate (rotate);
+//					usageTime = Time.time + 1f;
+//				}
+//				if(Time.time > usageTime){
+//					i++;
+//					print ("time's up!");
+//					setTime = false;
+//				}
+//			}
+//			Quaternion temp = transform.rotation;
+//			temp.z = transform.rotation.z * jVal;
+//			transform.rotation = temp;
+//
+			//animate = true;
 
-			for(int i=0; i<j; i++)
-				transform.Rotate (rotate);
-		
+			for(int i = 0; i < jVal; i++)
+				transform.Rotate(rotate);
 		}
+	}
+
+	public void spin(){
+//		curLerpTime += Time.deltaTime * speed;
+//		print ("spin");
+//		if (curLerpTime > lerpTime) {
+//			animate = false;
+//			curLerpTime = 0;
+//		}
+//		float perc = curLerpTime / lerpTime;
+//	
+//
+//		Quaternion.Lerp(first, transform.rotation, perc);
 	}
 }

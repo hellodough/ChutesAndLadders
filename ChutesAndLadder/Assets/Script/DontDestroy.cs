@@ -13,6 +13,8 @@ public class DontDestroy : MonoBehaviour {
 
 	public bool[] human = new bool[4] {false, false, false, false};
 
+	public int winner = -1;
+
 	public static DontDestroy Instance{
 		get{return instance;}
 	}
