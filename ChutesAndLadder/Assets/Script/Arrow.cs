@@ -10,7 +10,8 @@ public class Arrow : MonoBehaviour {
 	private bool set = false;
 	private float usage;
 
-	private int jVal;
+	private Vector3 rotate;
+	private int jVal, i=999;
 
 	private bool animate = false;
 	private Quaternion first;
@@ -20,6 +21,8 @@ public class Arrow : MonoBehaviour {
 
 	private bool setTime = false;
 	private float usageTime;
+
+	private bool setMove = true;
 
 	// Use this for initialization
 	void Start () {
@@ -41,15 +44,25 @@ public class Arrow : MonoBehaviour {
 			}
 		}
 
-		if (animate) {
-			spin();		
+		if(i < jVal){
+			for(int j = i + 5; i <= j; i++)
+				transform.Rotate(rotate);
 		}
+		else {
+			if(!setMove){
+				movePlayer ();
+				setMove = true;
+			}
+			
+		}
+
 	}
 
 	void OnMouseDown(){
 		if(!driver.animating){
+			setMove = false;
 			first = transform.rotation;
-			Vector3 rotate = Quaternion.Euler (0, 0, 0) * Vector3.forward;
+			rotate = Quaternion.Euler (0, 0, 0) * Vector3.forward;
 
 			int rand = Random.Range (1, 6);
 			jVal = 360-(60 * rand);
@@ -60,63 +73,54 @@ public class Arrow : MonoBehaviour {
 
 			print (value);
 
-			switch (driver.playerTurn) {
-				case 1:
-					GameObject.FindGameObjectWithTag ("Player1").GetComponent<PlayerMovement> ().move = true;
-					GameObject.FindGameObjectWithTag ("Player1").GetComponent<PlayerMovement> ().spacesToMove = value;
-					break;
-				case 2:
-					GameObject.FindGameObjectWithTag ("Player2").GetComponent<PlayerMovement> ().move = true;
-					GameObject.FindGameObjectWithTag ("Player2").GetComponent<PlayerMovement> ().spacesToMove = value;
-					break;
-				case 3:
-					GameObject.FindGameObjectWithTag ("Player3").GetComponent<PlayerMovement> ().move = true;
-					GameObject.FindGameObjectWithTag ("Player3").GetComponent<PlayerMovement> ().spacesToMove = value;
-					break;
-				case 4: 
-					GameObject.FindGameObjectWithTag ("Player4").GetComponent<PlayerMovement> ().move = true;
-					GameObject.FindGameObjectWithTag ("Player4").GetComponent<PlayerMovement> ().spacesToMove = value;
-					break;
-	//			default:
-	//				break;
-			}
-			driver.playerTurn = (driver.playerTurn % dontDestroy.numPlayers) + 1;
-//			setTime = false;
-//			int i = 0;
-//			while(i<jVal){
-//				if(!setTime){
-//					print ("set time");
-//					setTime = true;
-//					transform.Rotate (rotate);
-//					usageTime = Time.time + 1f;
-//				}
-//				if(Time.time > usageTime){
-//					i++;
-//					print ("time's up!");
-//					setTime = false;
-//				}
+//			switch (driver.playerTurn) {
+//				case 1:
+//					GameObject.FindGameObjectWithTag ("Player1").GetComponent<PlayerMovement> ().move = true;
+//					GameObject.FindGameObjectWithTag ("Player1").GetComponent<PlayerMovement> ().spacesToMove = value;
+//					break;
+//				case 2:
+//					GameObject.FindGameObjectWithTag ("Player2").GetComponent<PlayerMovement> ().move = true;
+//					GameObject.FindGameObjectWithTag ("Player2").GetComponent<PlayerMovement> ().spacesToMove = value;
+//					break;
+//				case 3:
+//					GameObject.FindGameObjectWithTag ("Player3").GetComponent<PlayerMovement> ().move = true;
+//					GameObject.FindGameObjectWithTag ("Player3").GetComponent<PlayerMovement> ().spacesToMove = value;
+//					break;
+//				case 4: 
+//					GameObject.FindGameObjectWithTag ("Player4").GetComponent<PlayerMovement> ().move = true;
+//					GameObject.FindGameObjectWithTag ("Player4").GetComponent<PlayerMovement> ().spacesToMove = value;
+//					break;
+//	//			default:
+//	//				break;
 //			}
-//			Quaternion temp = transform.rotation;
-//			temp.z = transform.rotation.z * jVal;
-//			transform.rotation = temp;
-//
-			//animate = true;
+			driver.playerTurn = (driver.playerTurn % dontDestroy.numPlayers) + 1;
 
-			for(int i = 0; i < jVal; i++)
-				transform.Rotate(rotate);
+			i = 0;
 		}
 	}
 
-	public void spin(){
-//		curLerpTime += Time.deltaTime * speed;
-//		print ("spin");
-//		if (curLerpTime > lerpTime) {
-//			animate = false;
-//			curLerpTime = 0;
-//		}
-//		float perc = curLerpTime / lerpTime;
-//	
-//
-//		Quaternion.Lerp(first, transform.rotation, perc);
+	public void movePlayer(){
+		switch (driver.playerTurn) {
+		case 1:
+			GameObject.FindGameObjectWithTag ("Player1").GetComponent<PlayerMovement> ().move = true;
+			GameObject.FindGameObjectWithTag ("Player1").GetComponent<PlayerMovement> ().spacesToMove = value;
+			break;
+		case 2:
+			GameObject.FindGameObjectWithTag ("Player2").GetComponent<PlayerMovement> ().move = true;
+			GameObject.FindGameObjectWithTag ("Player2").GetComponent<PlayerMovement> ().spacesToMove = value;
+			break;
+		case 3:
+			GameObject.FindGameObjectWithTag ("Player3").GetComponent<PlayerMovement> ().move = true;
+			GameObject.FindGameObjectWithTag ("Player3").GetComponent<PlayerMovement> ().spacesToMove = value;
+			break;
+		case 4: 
+			GameObject.FindGameObjectWithTag ("Player4").GetComponent<PlayerMovement> ().move = true;
+			GameObject.FindGameObjectWithTag ("Player4").GetComponent<PlayerMovement> ().spacesToMove = value;
+			break;
+			//			default:
+			//				break;
+		}
 	}
+	
+	
 }
