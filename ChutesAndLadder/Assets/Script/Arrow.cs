@@ -60,6 +60,7 @@ public class Arrow : MonoBehaviour {
 
 	void OnMouseDown(){
 		if(!driver.animating){
+			audio.Play();
 			setMove = false;
 			first = transform.rotation;
 			rotate = Quaternion.Euler (0, 0, 0) * Vector3.forward;

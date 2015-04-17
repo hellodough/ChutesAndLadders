@@ -9,7 +9,22 @@ public class NetworkManager : MonoBehaviour {
 	private const string typeName = "UniqueGameName";
 	private const string gameName = "Room Name";
 
+	private static NetworkManager instance;
 
+	public static NetworkManager Instance{
+		get{return instance;}
+	}
+	
+	void Awake() {
+		DontDestroyOnLoad(this);
+		
+		if (instance == null)
+			instance = this;
+		else if (instance != this) {
+			Destroy(gameObject);
+			return;
+		}
+	}
 
 	private void StartServer()
 	{
@@ -21,6 +36,7 @@ public class NetworkManager : MonoBehaviour {
 	void OnServerInitialized()
 	{
 		Debug.Log("Server Initializied");
+		Application.LoadLevel ("OnlineLobby");
 	}
 
 	void OnGUI()
@@ -62,6 +78,7 @@ public class NetworkManager : MonoBehaviour {
 	private void JoinServer(HostData hostData)
 	{
 		Network.Connect(hostData);
+		Application.LoadLevel ("OnlineLobby");
 	}
 	
 	void OnConnectedToServer()
